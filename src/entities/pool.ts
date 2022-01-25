@@ -66,8 +66,17 @@ export class Pool {
   ) {
     invariant(Number.isInteger(fee) && fee < 1_000_000, 'FEE')
 
+    console.log("fee: " + fee)
+    console.log("sqrtRatioX96: " + sqrtRatioX96)
+    console.log("liquidity: " + liquidity)
+    console.log("tickCurrent: " + tickCurrent)
+      
     const tickCurrentSqrtRatioX96 = TickMath.getSqrtRatioAtTick(tickCurrent)
     const nextTickSqrtRatioX96 = TickMath.getSqrtRatioAtTick(tickCurrent + 1)
+
+    console.log("tickCurrentSqrtRatioX96: " + tickCurrentSqrtRatioX96)
+    console.log("nextTickSqrtRatioX96: " + nextTickSqrtRatioX96)
+      
     invariant(
       JSBI.greaterThanOrEqual(JSBI.BigInt(sqrtRatioX96), tickCurrentSqrtRatioX96) &&
         JSBI.lessThanOrEqual(JSBI.BigInt(sqrtRatioX96), nextTickSqrtRatioX96),
